@@ -18,8 +18,8 @@ const createBuyerTable = () => {
 }
 
 
-export const insertBuyer =  (id, name, address) => {
-    const data =   connection.query(`INSERT INTO BUYER VALUES(${id}, '${name}', '${address}');`, (err, res) => {
+export const insertBuyer =  (id, name, address,phone) => {
+    const data =   connection.query(`INSERT INTO BUYER VALUES(${id}, '${name}', '${address}', '${phone}');`, (err, res) => {
         if(err){
             console.log(err)
         }
@@ -43,9 +43,7 @@ export const insertBuyer =  (id, name, address) => {
         }
         else{
             console.log(res)
-            res.forEach(row => {
-                console.log(row.bid)
-            });
+           
         }
     })
     
@@ -54,6 +52,18 @@ export const insertBuyer =  (id, name, address) => {
 
 export const deleteBuyer = (id) => {
     connection.query(`DELETE FROM BUYER WHERE bid = '${id}'`, (err,res) => {
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log(res)
+        }
+    })
+}
+
+
+export const showBuyerById = (id) => {
+    connection.query(`SELECT * FROM BUYER WHERE bid = '${id}'`, (err,res) => {
         if(err){
             console.log(err)
         }
